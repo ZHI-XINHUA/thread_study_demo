@@ -15,12 +15,17 @@ import java.util.concurrent.TimeUnit;
 public class Blocking {
 
     public static void main(String[] args) throws  Exception{
-        //ArrayBlockingQueueDemo();
+        ArrayBlockingQueueDemo();
         //LinkedBlockingQueueDemo();
-        PriorityBlockingQueueDemo();
+        //PriorityBlockingQueueDemo();
     }
 
-    //有界队列
+    /**
+     * ArrayBlockingQueue:基于数组的阻塞队列实现，在ArrayBlockingQueue内部为何一个
+     * 定长数组，以便缓存队列中的数据对象，其内部实现读写分离，也就意味着生产和消费不能完全并行，
+     * 长度是需要定义的，可以指定先进先出或者先进后出，也叫有界队列。
+     * @throws Exception
+     */
     public  static  void ArrayBlockingQueueDemo() throws Exception{
         ArrayBlockingQueue<String> q = new ArrayBlockingQueue<String>(5);
 
@@ -36,13 +41,21 @@ public class Blocking {
 
         System.out.println(q.poll());//从头部去元素，并删除
 
+        System.out.println("poll()从头部去元素，并删除后的队列==========");
         Iterator i = q.iterator();
         while (i.hasNext()){
-            System.out.println(i.next());
+            System.out.print(i.next());
         }
     }
 
     //无界队列
+
+    /**
+     * 基于链表的阻塞队列，同ArrayBlockingQueue类似，其内部也维持着一个数据缓冲队列（该队列由一个链表构成），LinkedBlockbingQueue
+     * 之所以能够高效的处理并发数据，是因为其内部实现采用分离锁（读写分离两个锁），从而实现生产者和消费者操作的完全并行运行，
+     * 是一个无界队列
+     * @throws Exception
+     */
     public static  void LinkedBlockingQueueDemo() throws Exception{
         LinkedBlockingQueue<String> q = new LinkedBlockingQueue<String>();
         q.put("a");
@@ -63,6 +76,12 @@ public class Blocking {
         }
     }
 
+    /**
+     * PriorityBlockingQueue：基于优先级的阻塞队列（有限级的判断通过构造函数传入的Compator对象来决定，也就是
+     * 说传入队列的对象必须实现Comparable接口），在实现PriorityBlockingQueue时，内部控制线程同步的锁采用的是
+     * 公平锁，他也是一个无界的队列
+     * @throws Exception
+     */
     public static  void PriorityBlockingQueueDemo() throws Exception{
         PriorityBlockingQueue<Task> q = new PriorityBlockingQueue<Task>();
 
