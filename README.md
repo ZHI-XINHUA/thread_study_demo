@@ -1,4 +1,40 @@
 # 线程学习
+### JDK并发包
+**1、ReentrantLock（重入锁）**
+>  ReentrantLock：重入锁可以完全替换synchronized关键字，重入锁的性能远远好于synchronized。
+ *  lock()：获得锁，如果锁已经被占用，则等待
+ *  lockInterruptibly()：获得锁，但优先响应中断
+ *  tryLock()：尝试获得锁，如果成功，返回true，失败返回false。该方法不等待，立即返回
+ *  tryLock(long time,TimeUnit unit)：在给定时间内尝试获得锁
+ *  unlock()：释放锁
+
+**2、Condition（重入锁的好搭档）**
+> Condition:它和wait()和notify()方法的作用大致相同，但是wait()和notify()是和synchronized关键字合作使用，而Condition是与重入锁相关联的。
+ * await():方法会使当前线程等待，同时释放当前锁，当其他线程使用signal()或signalAll()方法时，线程会重现获取锁并继续执行。或者当前线程被中断时，也就能跳出等待。者和Object.wait()很相似。
+ * awaitUninterruptibly():与await()基本相同，但是它并不会在等待过程中响应中断。
+ * signal():唤醒一个在等待中的线程，这和Object.notify()很类似。
+ * signalAll():唤醒所有在等待中的线程。
+ 
+ **3、BlockingQueue（信号量）**
+>信号量指定多个线程，同时访问某一个资源
+
+**4、ReadWriteLock（读写锁）**
+&nbsp;  | 读 | 写
+--|--|--|
+<b>读</b>|非阻塞|阻塞
+<b>写</b>|阻塞|阻塞
+```java
+  ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+  Lock readLock = readWriteLock.readLock();//读锁
+  Lock writeLock = readWriteLock.writeLock();//写锁
+```
+
+**5、CountDownLatch（倒计时器）**
+>多线程控制工具类，用来控制线程等待，它可以让某一个线程等待知道倒计时结束，再开始执行
+
+**6、CyclicBarrier（循环栅栏）**
+>CyclicBarrier:和CountDownLatch非常类似，它也可以实现线程间的计数等待，但它的功能比CountDownLatch更加复杂且强大。Cyclic意为循环，也就是说这个计数器可以反复使用。比如，假设我们将计数器设置为10，那么凑齐第一批10个线程后，计数器就会归零，然后接着凑齐下一批10个线程，这就是循环栅栏内在的含义。（如：跑步，9个人准备好后一抢令下一起起跑；接着下一批开始。
+
 ### 并发Queue
 ![image](https://github.com/ZHI-XINHUA/imageResource/blob/master/queue1.png)
 
