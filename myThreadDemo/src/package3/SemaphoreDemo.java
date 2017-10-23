@@ -7,6 +7,10 @@ import java.util.concurrent.Semaphore;
 /**
  * Created by zhixinhua on 17/10/15.
  */
+
+/**
+ * 信号量指定多个线程，同时访问某一个资源
+ */
 public class SemaphoreDemo implements  Runnable {
     final Semaphore sema = new Semaphore(5);
 
@@ -17,7 +21,7 @@ public class SemaphoreDemo implements  Runnable {
            // System.out.println("in "+this.threadName+" .....");
             sema.acquire();//申请信号
             System.out.println("run "+Thread.currentThread().getName()+" .....");
-            Thread.sleep(1000);//模拟耗时
+            Thread.sleep(2000);//模拟耗时
 
             sema.release();//释放信号量
         }catch (Exception e){

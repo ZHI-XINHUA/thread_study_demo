@@ -5,6 +5,10 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Created by zhixinhua on 17/10/10.
  */
+
+/**
+ * 线程的想换调用，谁也不释放锁，导致死线程
+ */
 public class DeathLock implements Runnable {
 
     public  static ReentrantLock lock1 = new ReentrantLock();

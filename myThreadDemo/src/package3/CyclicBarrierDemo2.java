@@ -6,6 +6,12 @@ import java.util.concurrent.CyclicBarrier;
 /**
  * Created by zhixinhua on 17/10/12.
  */
+
+/**
+ * CyclicBarrier:和CountDownLatch非常类似，它也可以实现线程间的计数等待，但它的功能比CountDownLatch更加复杂且强大。
+ * Cyclic意为循环，也就是说这个计数器可以反复使用。比如，假设我们将计数器设置为10，那么凑齐第一批10个线程后，计数器就会归零，
+ * 然后接着凑齐下一批10个线程，这就是循环栅栏内在的含义。（如：跑步，9个人准备好后一抢令下一起起跑；接着下一批开始）
+ */
 public class CyclicBarrierDemo2 {
     public static class Soldier implements  Runnable{
         private String soldier;
