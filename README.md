@@ -19,15 +19,18 @@
 >信号量指定多个线程，同时访问某一个资源
 
 **4、ReadWriteLock（读写锁）**
-&nbsp;  | 读 | 写
---|--|--|
-<b>读</b>|非阻塞|阻塞
-<b>写</b>|阻塞|阻塞
+
+|| 读 | 写|
+|--|--|--|
+|读|非阻塞|阻塞|
+|写|阻塞|阻塞|
+
 ```java
   ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
   Lock readLock = readWriteLock.readLock();//读锁
   Lock writeLock = readWriteLock.writeLock();//写锁
 ```
+
 
 **5、CountDownLatch（倒计时器）**
 >多线程控制工具类，用来控制线程等待，它可以让某一个线程等待知道倒计时结束，再开始执行
