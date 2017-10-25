@@ -1,4 +1,4 @@
-package package2;
+package queuedemo;
 
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentLinkedQueue;

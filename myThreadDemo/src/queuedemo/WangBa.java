@@ -1,4 +1,4 @@
-package package2;
+package queuedemo;
 
 import java.util.concurrent.DelayQueue;
 

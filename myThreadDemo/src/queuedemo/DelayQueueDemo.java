@@ -1,4 +1,4 @@
-package package2;
+package queuedemo;
 
 /**
  * Created by zhixinhua on 17/10/22.
