@@ -79,3 +79,9 @@
     * boolean isDone() 是否已完成
     * boolean isCancelled() 是否已取消
     * boolean cancel(boolean mayInterruptIfRunning) 取消任务
+   
+   
+  **Msater-Worker模式**
+>Master-Worker模式时常用的并行计算模式，它的核心思想是系统由两类进程协助工作：Master进程和Worker进程。Master负责接受和分配任务，Worker负责处理子任务。当各个Worker子进程处理完成后，会将结果返回给Master,由Master做归纳和总结。其好处是能将一个大任务分解成若干个小任务，并行执行，从而提高系统的吞吐量。
+
+![图](https://github.com/ZHI-XINHUA/imageResource/blob/master/masterworker.png)
