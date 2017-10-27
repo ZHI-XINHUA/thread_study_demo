@@ -61,3 +61,27 @@
 
 - DelayQueue
     >带有延迟时间的Queue，其中的元素只有当其指定的延迟时间到了，才能够从队列中获取得到该元素。DelayQueue中的元素必须实现Delayed接口，DelayQueue是一个没有大小限制的队列。应用场景很多，比如对缓存超时的数据进行移除、任务超时处理、空闲连接的关闭等等
+    
+    
+### 并行模式
+   **Future模式**
+>&nbsp;&nbsp;Future模式是多线程开发中非常常见的一种设计模式，核心思想是异步调用。<br>
+    &nbsp;&nbsp;当我们调用一个函数方法时，如果这个函数执行很慢，那么我们就要进行等待。但是这个时候，我们可能不着急获取结果。因此，我们可以让被调用者立即返回，让它在后台慢慢处理这个请求。对于调用者来说，则可以先处理一些其它任务，在真正需要数据的场合再去尝试获取需要的数据。<br>
+    &nbsp;&nbsp;Future模式虽然无法立即给出你需要的数据，但是它会返回一个契约，以后可以凭借这个契约重新获取你所需要的数据。
+    
+- Future模式流程图模式
+
+![流程图](https://github.com/ZHI-XINHUA/imageResource/blob/master/future.png)
+
+- 常用的方法
+    * V get() 获取返回对象
+    * V get(long timeout, TimeUnit unit) 获取返回对象，可以设置超时实际
+    * boolean isDone() 是否已完成
+    * boolean isCancelled() 是否已取消
+    * boolean cancel(boolean mayInterruptIfRunning) 取消任务
+   
+   
+  **Msater-Worker模式**
+>Master-Worker模式时常用的并行计算模式，它的核心思想是系统由两类进程协助工作：Master进程和Worker进程。Master负责接受和分配任务，Worker负责处理子任务。当各个Worker子进程处理完成后，会将结果返回给Master,由Master做归纳和总结。其好处是能将一个大任务分解成若干个小任务，并行执行，从而提高系统的吞吐量。
+
+![图](https://github.com/ZHI-XINHUA/imageResource/blob/master/masterworker.png)
