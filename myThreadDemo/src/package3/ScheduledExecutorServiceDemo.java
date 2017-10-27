@@ -9,7 +9,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class ScheduledExecutorServiceDemo {
 
-    public  static void  setscheduleAtFixedRate(ScheduledExecutorService ses){
+    public  static void  testscheduleAtFixedRate(){
+        ScheduledExecutorService ses = Executors.newScheduledThreadPool(10);
         ses.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -24,7 +25,8 @@ public class ScheduledExecutorServiceDemo {
         },5,2, TimeUnit.SECONDS);
     }
 
-    public static  void setscheduleWithFixedDelay(ScheduledExecutorService ses){
+    public static  void testscheduleWithFixedDelay(){
+        ScheduledExecutorService ses = Executors.newScheduledThreadPool(10);
         ses.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
@@ -39,10 +41,10 @@ public class ScheduledExecutorServiceDemo {
 
     }
 
+
+
     public static void main(String[] args) {
-        ScheduledExecutorService es = Executors.newScheduledThreadPool(10);
-        System.out.println(System.currentTimeMillis()/1000);
-        //ScheduledExecutorServiceDemo.setscheduleAtFixedRate(es);
-        ScheduledExecutorServiceDemo.setscheduleWithFixedDelay(es);
+        //ScheduledExecutorServiceDemo.testscheduleAtFixedRate();
+        ScheduledExecutorServiceDemo.testscheduleWithFixedDelay();
     }
 }
