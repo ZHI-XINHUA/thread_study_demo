@@ -85,3 +85,59 @@
 >Master-Worker模式时常用的并行计算模式，它的核心思想是系统由两类进程协助工作：Master进程和Worker进程。Master负责接受和分配任务，Worker负责处理子任务。当各个Worker子进程处理完成后，会将结果返回给Master,由Master做归纳和总结。其好处是能将一个大任务分解成若干个小任务，并行执行，从而提高系统的吞吐量。
 
 ![图](https://github.com/ZHI-XINHUA/imageResource/blob/master/masterworker.png)
+
+### 线程池
+>为了避免系统频繁地创建和销毁线程，我们可以让创建的线程进行复用。和数据库链接池类似，在线程池中，总有那么几个活跃线程。当你需要使用线程时，可以从池中随便拿一个koxian线程，当完成工作时，并不着急关闭线程，而是将这个线程退回到池中，方便其它线程使用。<br>
+ 推荐参考一篇总结不错的文章：[Java Executor并发框架](http://www.cnblogs.com/vhua/p/5277694.html)
+
+**Executor框架：提供各种类型的线程池创建**
+* newFixedThreadPool
+```java
+//方法返回一个固定数量的线程池，该线程池中的线程数量始终不变。当又一个新的任务提交时，线程池中如有空闲线程，则立即执行。若没有，则新的任务会被暂存在一个任务队列中，待有线程空闲时，便处理在任务队列中的任务。
+public static ExecutorService newFixedThreadPool(int nThreads) 
+```
+
+*  newSingleThreadExecutor
+```java
+//该方法返回只有一个线程的线程池，若多于一个任务被提交到该线程池，任务会被保存在一个任务队列中，待线程空闲，按先入先出的顺序执行队列中的任务
+public static ExecutorService newSingleThreadExecutor()
+```
+
+* newCachedThreadPool
+```java
+//该方法返回一个可根据实际情况调整线程数量的线程池。线程池的数量不确定，但若有空闲线程可以复用，则会优先使用可复用的线程。若所有线程均在工作，又有新的任务提交，则会创建新的线程处理任务。所有线程在当前任务执行完毕后，将返回线程池进行复用。
+public static ExecutorService newCachedThreadPool() 
+```
+
+*  newSingleThreadScheduledExecutor
+```java
+//该方法返回一个ScheduledExecutorService对象，线程池大小为1.ScheduledExecutorService接口在ExecutorService接口上扩展了在给定时间执行某任务的功能，如在某个固定的延时之后执行，或者周期性执行某个任务。
+public static ScheduledExecutorService newSingleThreadScheduledExecutor()
+```
+
+* ScheduledExecutorService
+```java 
+ //该方法也返回一个ScheduledExecutorService对象，但该线程池可以指定线程数量
+ public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize)
+```
+
+**ScheduledExecutorService:对线程进行调度**
+>ScheduledExecutorService接口在ExecutorService接口上扩展了在给定时间执行某任务的功能，如在某个固定的延时之后执行，或者周期性执行某个任
+
+* scheduleAtFixedRate
+ ```java
+ //任务调度的频率是一定的，它是以上一个任务开始执行时间为七点，之后的period时间，调度下一次任务。 注：如果任务时间比period长，则任务结束后马上执行。
+ public ScheduledFuture<?> scheduleAtFixedRate(Runnable command,   //任务
+                                                  long initialDelay, //第一次任务执行的延时时间
+                                                  long period,  //周期时间
+                                                  TimeUnit unit); //时间单位
+ ```
+ 
+ * scheduleWithFixedDelay
+ ```java
+ //在上一个任务结束后，再经过delay时间进行调度。
+public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, //任务
+                                                     long initialDelay,//第一次任务执行的延时时间
+                                                     long delay, //延时时间：上一次执行完成到下一次执行开始的时间间隔
+                                                     TimeUnit unit); //时间单位
+ ```
