@@ -39,7 +39,7 @@
 >CyclicBarrier:和CountDownLatch非常类似，它也可以实现线程间的计数等待，但它的功能比CountDownLatch更加复杂且强大。Cyclic意为循环，也就是说这个计数器可以反复使用。比如，假设我们将计数器设置为10，那么凑齐第一批10个线程后，计数器就会归零，然后接着凑齐下一批10个线程，这就是循环栅栏内在的含义。（如：跑步，10个人准备好后一抢令下一起起跑；接着下一批开始。
 
 ### 并发Queue
-![image](https://github.com/ZHI-XINHUA/imageResource/blob/master/queue1.png)
+![这里写图片描述](http://img.blog.csdn.net/20180122093539030?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhpeGluaHVhY29t/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **1、ConcurrentLinkedQueue**
 >是一个使用鱼高并发场景下的队列，通过无锁的方式，实现来高并发状态下的高性能，通常ConcurrentLinkedQueue性能好于BlockingQueue。它是一个基于链接节点的无界线程安全队列。该队列的元素遵循先进先出的原则，该队列不允许null元素
@@ -71,7 +71,7 @@
     
 - Future模式流程图模式
 
-![流程图](https://github.com/ZHI-XINHUA/imageResource/blob/master/future.png)
+![这里写图片描述](http://img.blog.csdn.net/20180122093620361?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhpeGluaHVhY29t/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 - 常用的方法
     * V get() 获取返回对象
@@ -84,7 +84,7 @@
   **Msater-Worker模式**
 >Master-Worker模式时常用的并行计算模式，它的核心思想是系统由两类进程协助工作：Master进程和Worker进程。Master负责接受和分配任务，Worker负责处理子任务。当各个Worker子进程处理完成后，会将结果返回给Master,由Master做归纳和总结。其好处是能将一个大任务分解成若干个小任务，并行执行，从而提高系统的吞吐量。
 
-![图](https://github.com/ZHI-XINHUA/imageResource/blob/master/masterworker.png)
+![这里写图片描述](http://img.blog.csdn.net/20180122093647111?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhpeGluaHVhY29t/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### 线程池
 >为了避免系统频繁地创建和销毁线程，我们可以让创建的线程进行复用。和数据库链接池类似，在线程池中，总有那么几个活跃线程。当你需要使用线程时，可以从池中随便拿一个koxian线程，当完成工作时，并不着急关闭线程，而是将这个线程退回到池中，方便其它线程使用。<br>
